@@ -7,10 +7,13 @@ namespace PracticaBNA
     {
         static void Main(string[] args)
         {
-            string formatoDeImpresion = Utilidades.ProcesarParametros(args);
+            string formatoDeImpresion;
+
+            formatoDeImpresion = Utilidades.ProcesarParametros(args);
 
             List<Registro> registros = Utilidades.ObtenerRegistros();
-            Utilidades.ImprimirRegistros(registros, formatoDeImpresion);
+
+            Utilidades.ImprimirRegistros(AlgoritmosDeOrdenamiento.Ordenar(registros), formatoDeImpresion);
             Console.ReadKey();
         }
     }

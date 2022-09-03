@@ -1,27 +1,41 @@
-﻿using PracticaBNA.Modelos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using PracticaBNA.Modelos;
 
 namespace PracticaBNA.Utils
 {
     internal class AlgoritmosDeOrdenamiento
     {
         public enum AlgoritmoDeOrdenamiento { Bubblesort, Delegate, LinQ }
-        
-        internal static AlgoritmoDeOrdenamiento BuscarAlgoritmoDeOrdenamiento()
+        internal static AlgoritmoDeOrdenamiento ObtenerAlgoritmoDeOrdenamiento()
         {
-            string algoritmoDeOrdenamiento = System.Configuration.ConfigurationManager.AppSettings["AlgoritmoDeOrdenamiento"];
-            if (int.TryParse(algoritmoDeOrdenamiento, out _))
-                throw new ArgumentException("El parametro de impresion no puede ser numerico.");
-            AlgoritmoDeOrdenamiento algoritmoValido = (AlgoritmoDeOrdenamiento)System.Enum.Parse(typeof(AlgoritmoDeOrdenamiento), algoritmoDeOrdenamiento);
-            Console.WriteLine(algoritmoValido);
-            return algoritmoValido;
+            String opcion = "LinQ";
+            AlgoritmoDeOrdenamiento algoritmo;
+            algoritmo = BuscarAlgoritmoDeOrdenamiento(opcion);
+            return algoritmo;
         }
-        
+        internal static AlgoritmoDeOrdenamiento BuscarAlgoritmoDeOrdenamiento(string algoritmoDeOrdenamiento)
+        {
+            bool esValido = false;
+            int i;
+            AlgoritmoDeOrdenamiento[] algoritmos = (AlgoritmoDeOrdenamiento[])Enum.GetValues(typeof(AlgoritmoDeOrdenamiento));
+            for (i = 0; i < algoritmos.Length && !esValido;)
+            {
+                if (algoritmoDeOrdenamiento.ToLower().Equals(algoritmos[i].ToString().ToLower()))
+                    esValido = true;
+                if (!esValido)
+                    i++;
+            }
+            if (!esValido)
+                throw new Exception("Algoritmo de ordenamiento invalido.");
+            return algoritmos[i];
+        }
         public static List<Registro> Ordenar(List<Registro> registros)
         {
-            AlgoritmoDeOrdenamiento algoritmo = BuscarAlgoritmoDeOrdenamiento();
+            AlgoritmoDeOrdenamiento algoritmo = ObtenerAlgoritmoDeOrdenamiento();
             if (!System.Enum.IsDefined(typeof(AlgoritmoDeOrdenamiento), algoritmo))
                 throw new Exception("No existe el algoritmo de ordenamiento especificado.");
             
@@ -70,14 +84,7 @@ namespace PracticaBNA.Utils
 
         private static List<Registro> OrdenarPorLinq(List<Registro> registros)//no funciona
         {
-            try
-            {
-                return registros.OrderByDescending(x => x.fecha).ToList();
-            }
-            catch (ArgumentNullException e)
-            {
-                throw new ArgumentNullException("No hay registros insertados para ordenar",e);
-            }
+            return registros.OrderByDescending(x => x.fecha).ToList();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace PracticaBNA.Utils
 
         internal static string ProcesarParametros(string[] parametros)
         {
-            string validArg = "LongFormat";
+            string parametroValido = "LongFormat";
 
             if (parametros.Length > 1)
                 throw new ArgumentException("1 argument admited.");
@@ -34,11 +34,11 @@ namespace PracticaBNA.Utils
                 {
                     if (!EsFormatoDeImpresionValido(parametros[0]))
                         throw new ArgumentException("Invalid specified format.");
-                    validArg = parametros[0];
+                    parametroValido = parametros[0];
                 }
             }
 
-            return validArg;
+            return parametroValido;
         }
 
         internal static bool EsFormatoDeImpresionValido(string format)
