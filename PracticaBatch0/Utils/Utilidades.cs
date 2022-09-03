@@ -7,10 +7,16 @@ namespace PracticaBNA.Utils
 {
     public abstract class Utilidades
     {
-        internal static Registro ObtenerRegistro()
+        internal static List<Registro> ObtenerRegistros()
         {
-            EntradaDeUsuario Entrada = new EntradaDeUsuario();
-            return new Registro(Entrada.ObtenerLinea());
+            string linea;
+            EntradaDeUsuario entradaDeUsuario = new EntradaDeUsuario();
+            List<Registro> registros = new List<Registro>();
+
+            while ((linea = entradaDeUsuario.ObtenerLinea()) != null)
+                registros.Add(new Registro(linea));
+
+            return registros;
         }
 
         public enum FormatoDeImpresion { ShortFormat, LongFormat }
@@ -45,6 +51,14 @@ namespace PracticaBNA.Utils
                     isValid = true;
             }
             return isValid;
+        }
+
+        internal static void ImprimirRegistros(List<Registro> registros, string formato)
+        {
+            foreach (Registro registro in registros)
+            {
+                registro.Imprimir(formato);
+            }
         }
     }
 

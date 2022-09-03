@@ -12,7 +12,9 @@ namespace PracticaBNA
                 Console.WriteLine("Ingrese los datos: ");
                 entrada = Console.ReadLine();
             }
-            while (entrada.Length != 25 || entrada == null);
+            while (entrada.Length != 0 && entrada.Length != 25);
+            if (entrada.Length == 0)
+                return null;
             return entrada;
         }
     }

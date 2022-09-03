@@ -9,8 +9,8 @@ namespace PracticaBNA
         {
             string formatoDeImpresion = Utilidades.ProcesarParametros(args);
 
-            Registro registro = Utilidades.ObtenerRegistro();
-            registro.Imprimir(formatoDeImpresion);
+            List<Registro> registros = Utilidades.ObtenerRegistros();
+            Utilidades.ImprimirRegistros(registros, formatoDeImpresion);
             Console.ReadKey();
         }
     }
