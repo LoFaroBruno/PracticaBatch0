@@ -1,7 +1,4 @@
 ﻿
-using System;
-using System.IO;
-
 namespace PracticaBNA.Modelos
 {
     public class EntradaDeArchivo : IEntrada

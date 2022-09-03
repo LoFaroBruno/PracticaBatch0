@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PracticaBNA
+namespace PracticaBNA.Modelos
 {
     public class EntradaDeUsuario
     {

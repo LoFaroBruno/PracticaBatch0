@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PracticaBNA": {
+      "commandName": "Project",
+      "commandLineArgs": "lote.txt"
+    }
+  }
+}
