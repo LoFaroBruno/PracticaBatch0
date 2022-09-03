@@ -41,10 +41,22 @@ namespace PracticaBNA.Modelos
                 Console.WriteLine(e);
             }
         }
-        public void Imprimir()
+        public void Imprimir(string formatoDeImpresion)
         {
-            Console.Write("\nFecha/Hora registro: " +
-                fecha.ToString("yyyy/MM/dd HH:mm:ss") +
+            string output = "";
+
+            if (String.Equals(formatoDeImpresion, "shortformat"))
+            {
+                output += "\nFecha del registro: " + fecha.ToString("yyyy/MM/dd", null) +
+                "\nHora del registro: " + fecha.ToString("HH'Hs':mm'Min':ss'Seg'", null);
+            }
+
+            else
+            {
+                output += "\nFecha/Hora registro: " + fecha.ToString("yyyy/MM/dd HH:mm:ss", null);
+            }
+
+            Console.Write(output +
                         "\nTemperatura: " + temperatura + "°" +
                         "\nHumedad: " + humedad + "%" +
                         "\nCodigo: " + codigo +
