@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PracticaBNA.Modelos
+namespace PracticaBNA
 {
     public class EntradaDeUsuario
     {
@@ -12,9 +12,7 @@ namespace PracticaBNA.Modelos
                 Console.WriteLine("Ingrese los datos: ");
                 entrada = Console.ReadLine();
             }
-            while (entrada.Length != 0 && entrada.Length != 25);
-            if (entrada.Length == 0)
-                return null;
+            while (entrada.Length != 25 || entrada == null);
             return entrada;
         }
     }
